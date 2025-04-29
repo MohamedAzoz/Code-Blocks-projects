@@ -1,0 +1,79 @@
+#include<windows.h>
+#include<GL/glut.h>
+#include<math.h>
+float y=250,x=50,z=100,v=200,c=150,w=300,deltaX=0.050,deltaY=0.050,deltaV=0.050,deltaZ=0.050,deltaC=0.050,deltaW=0.050;
+void draw()
+{
+    glClearColor(1,1,1,0);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glBegin(GL_POLYGON);
+    glColor3f(0,0,0);        glVertex2f(x,y);
+        glVertex2f(z,v);
+        glVertex2f(140,250);
+    glEnd();
+    glBegin(GL_POLYGON);
+        glColor3f(1,0,0);
+        glVertex2f(140,250);
+        glVertex2f(v,v);
+        glVertex2f(z,v);
+     glEnd();
+     glBegin(GL_POLYGON);
+        glColor3f(1,1,0);
+        glVertex2f(140,250);
+        glVertex2f(v,v);
+        glVertex2f(y,y);
+     glEnd();
+     glBegin(GL_POLYGON);
+        glColor3f(0,1,0);
+        glVertex2f(140,250);
+        glVertex2f(v,w);
+        glVertex2f(y,y);
+     glEnd();
+       glBegin(GL_POLYGON);
+        glColor3f(0,1,1);
+        glVertex2f(140,250);
+        glVertex2f(v,w);
+        glVertex2f(z,w);
+     glEnd();
+     glBegin(GL_POLYGON);
+        glColor3f(0,0,1);
+        glVertex2f(140,250);
+         glVertex2f(x,y);
+        glVertex2f(z,w);
+     glEnd();
+    glFlush();
+    //y=250,x=50,z=100,v=200,c=150,w=300
+
+    x+=deltaX;
+    if(x>=250||x<=50){
+        deltaX=-deltaX;
+    }
+    z+=deltaZ;
+     if(z>=250||z<=50){
+        deltaZ=-deltaZ;
+    }
+    v+=deltaV;
+     if(v>=300||v<=50){
+        deltaV=-deltaV;
+    }
+    y+=deltaY;
+     if(y>=300||y<=50){
+        deltaY=-deltaY;
+    }
+    w+=deltaW;
+     if(w>=300||w<=50){
+        deltaW=-deltaW;
+    }
+    glutPostRedisplay();
+
+}
+
+int main(){
+    glutInitWindowSize(500,500);
+    glutInitWindowPosition(100,100);
+    glutCreateWindow("View");
+    glutDisplayFunc(draw);
+    gluOrtho2D(0,500,0,500);
+    glutMainLoop();
+}
